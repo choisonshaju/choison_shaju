@@ -48,8 +48,7 @@ class _Api2pageState extends State<Api2page> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                              api2.api2articles?[index].urlToImage ??
-                                  "NO IMAGE"),
+                              api2.api2articles?[index].urlToImage ?? ""),
                         ),
                       ),
                     ),
