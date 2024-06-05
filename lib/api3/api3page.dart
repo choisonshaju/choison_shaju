@@ -27,7 +27,7 @@ class _Api3pageState extends State<Api3page> {
     var api3 = Provider.of<Api3>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("JEZT"),
+        title: Text("API3 PAGE"),
         centerTitle: true,
       ),
       body: api3.isLoading

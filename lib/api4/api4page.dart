@@ -1,42 +1,41 @@
-import 'package:choison_shaju/api2/api2controller.dart';
-
+import 'package:choison_shaju/api4/api4controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Api2page extends StatefulWidget {
-  const Api2page({super.key});
+class Api4page extends StatefulWidget {
+  const Api4page({super.key});
 
   @override
-  State<Api2page> createState() => _Api2pageState();
+  State<Api4page> createState() => _Api4pageState();
 }
 
-class _Api2pageState extends State<Api2page> {
+class _Api4pageState extends State<Api4page> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getapi2data();
+    getdata();
   }
 
-  getapi2data() async {
-    await Provider.of<Api2>(context, listen: false).fetchapidata();
+  getdata() async {
+    await Provider.of<Api4>(context, listen: true).fetchapidata();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    var api2 = Provider.of<Api2>(context);
+    var api4 = Provider.of<Api4>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("API2 PAGE"),
+        title: Text("API4 PAGE"),
         centerTitle: true,
       ),
-      body: api2.isLoading
+      body: api4.isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
               physics: BouncingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: api2.api2articles?.length,
+              itemCount: api4.api4articles?.length,
               itemBuilder: (context, index) => Container(
                   child: Padding(
                 padding: const EdgeInsets.all(30),
@@ -48,18 +47,18 @@ class _Api2pageState extends State<Api2page> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                              api2.api2articles?[index].urlToImage ?? ""),
+                              api4.api4articles?[index].urlToImage ?? ""),
                         ),
                       ),
                     ),
                     Text(
                       maxLines: 1,
-                      api2.api2articles?[index].title ?? "",
+                      api4.api4articles?[index].title ?? "",
                       style: TextStyle(fontSize: 30),
                     ),
                     Text(
                       maxLines: 10,
-                      api2.api2articles?[index].description ?? "",
+                      api4.api4articles?[index].description ?? "",
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
