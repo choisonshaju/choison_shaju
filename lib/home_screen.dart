@@ -39,6 +39,30 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Text("api2"),
             ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Api2page(),
+                ),
+              ),
+              child: Text("api3"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Api2page(),
+                ),
+              ),
+              child: Text("api4"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Api2page(),
+                ),
+              ),
+              child: Text("api5"),
+            ),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:choison_shaju/api2/api2controller.dart';
+import 'package:choison_shaju/api3/api3controller.dart';
 import 'package:choison_shaju/news/newscontroller.dart';
 import 'package:choison_shaju/home_screen.dart';
 import 'package:choison_shaju/news/newspage.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => Api2(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Api3(),
         )
       ],
       child: MaterialApp(
