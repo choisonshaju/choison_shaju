@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:choison_shaju/news/newsdatamodel.dart';
 
-class news with ChangeNotifier {
+class New with ChangeNotifier {
   bool isLoading = false;
   List<Article>? newsarticles = [];
   fetchapidata() async {

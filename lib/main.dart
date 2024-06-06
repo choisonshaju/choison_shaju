@@ -1,6 +1,5 @@
-import 'package:choison_shaju/api2/api2controller.dart';
-import 'package:choison_shaju/api3/api3controller.dart';
-import 'package:choison_shaju/api4/api4controller.dart';
+import 'package:choison_shaju/Person/person_controller.dart';
+
 import 'package:choison_shaju/news/newscontroller.dart';
 import 'package:choison_shaju/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +17,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => news(),
+          create: (context) => New(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Api2(),
+          create: (context) => Person(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Api3(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => Api4(),
-        )
       ],
       child: MaterialApp(
         home: HomeScreen(),

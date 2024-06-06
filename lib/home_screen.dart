@@ -1,6 +1,5 @@
-import 'package:choison_shaju/api2/api2page.dart';
-import 'package:choison_shaju/api3/api3page.dart';
-import 'package:choison_shaju/api4/api4page.dart';
+import 'package:choison_shaju/Person/Person_page.dart';
+
 import 'package:choison_shaju/news/newspage.dart';
 import 'package:flutter/material.dart';
 
@@ -35,34 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton(
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => Api2page(),
+                  builder: (context) => Person_page(),
                 ),
               ),
               child: Text("api2"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Api3page(),
-                ),
-              ),
-              child: Text("api3"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Api4page(),
-                ),
-              ),
-              child: Text("api4"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Api2page(),
-                ),
-              ),
-              child: Text("api5"),
             ),
           ],
         ),

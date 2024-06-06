@@ -1,41 +1,43 @@
+import 'package:choison_shaju/Person/person_controller.dart';
+
 import 'package:choison_shaju/constant/colorconstant.dart';
-import 'package:choison_shaju/news/newscontroller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Newspage extends StatefulWidget {
-  const Newspage({super.key});
+class Person_page extends StatefulWidget {
+  const Person_page({super.key});
 
   @override
-  State<Newspage> createState() => _NewspageState();
+  State<Person_page> createState() => _Person_pageState();
 }
 
-class _NewspageState extends State<Newspage> {
+class _Person_pageState extends State<Person_page> {
   @override
   void initState() {
     super.initState();
-    getapidata();
+    getapi2data();
   }
 
-  getapidata() async {
-    await Provider.of<New>(context, listen: false).fetchapidata();
+  getapi2data() async {
+    await Provider.of<Person>(context, listen: false).fetchapidata();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    var newsprovider = Provider.of<New>(context);
+    var personprovider = Provider.of<Person>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("JEZT"),
+        title: Text("API2 PAGE"),
         centerTitle: true,
       ),
-      body: newsprovider.isLoading
+      body: personprovider.isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
               physics: BouncingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: newsprovider.newsarticles?.length,
+              itemCount: personprovider.personarticles?.length,
               itemBuilder: (context, index) => Container(
                   color: Colorconstant.bgcolor,
                   child: Padding(
@@ -47,20 +49,20 @@ class _NewspageState extends State<Newspage> {
                           width: 200,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(newsprovider
-                                      .newsarticles?[index].urlToImage ??
-                                  "NO IMAGE"),
+                              image: NetworkImage(personprovider
+                                      .personarticles?[index].avatar ??
+                                  ""),
                             ),
                           ),
                         ),
                         Text(
                           maxLines: 1,
-                          newsprovider.newsarticles?[index].title ?? "",
+                          personprovider.personarticles?[index].firstName ?? "",
                           style: TextStyle(fontSize: 30),
                         ),
                         Text(
                           maxLines: 10,
-                          newsprovider.newsarticles?[index].description ?? "",
+                          personprovider.personarticles?[index].email ?? "",
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
