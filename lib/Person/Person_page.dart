@@ -28,8 +28,10 @@ class _Person_pageState extends State<Person_page> {
   Widget build(BuildContext context) {
     var personprovider = Provider.of<Person>(context);
     return Scaffold(
+      backgroundColor: Colorconstant.bgcolor,
       appBar: AppBar(
-        title: Text("API2 PAGE"),
+        forceMaterialTransparency: true,
+        title: Text("PERSON"),
         centerTitle: true,
       ),
       body: personprovider.isLoading
@@ -39,35 +41,34 @@ class _Person_pageState extends State<Person_page> {
               shrinkWrap: true,
               itemCount: personprovider.personarticles?.length,
               itemBuilder: (context, index) => Container(
-                  color: Colorconstant.bgcolor,
                   child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 200,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(personprovider
-                                      .personarticles?[index].avatar ??
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              personprovider.personarticles?[index].avatar ??
                                   ""),
-                            ),
-                          ),
                         ),
-                        Text(
-                          maxLines: 1,
-                          personprovider.personarticles?[index].firstName ?? "",
-                          style: TextStyle(fontSize: 30),
-                        ),
-                        Text(
-                          maxLines: 10,
-                          personprovider.personarticles?[index].email ?? "",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
+                      ),
                     ),
-                  )),
+                    Text(
+                      maxLines: 1,
+                      personprovider.personarticles?[index].firstName ?? "",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    Text(
+                      maxLines: 10,
+                      personprovider.personarticles?[index].email ?? "",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
+              )),
             ),
     );
   }

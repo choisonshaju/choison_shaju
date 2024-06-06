@@ -17,55 +17,83 @@ class _NewspageState extends State<Newspage> {
     getapidata();
   }
 
-  getapidata() async {
+  void getapidata({String? search = "news"}) async {
     await Provider.of<New>(context, listen: false).fetchapidata();
-    setState(() {});
+    setState(() {
+      //getapidata();
+    });
   }
 
+  TextEditingController searchControler = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var newsprovider = Provider.of<New>(context);
     return Scaffold(
+      backgroundColor: Colorconstant.bgcolor,
       appBar: AppBar(
-        title: Text("JEZT"),
+        forceMaterialTransparency: true,
+        title: Text("NEWS"),
         centerTitle: true,
       ),
       body: newsprovider.isLoading
           ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: newsprovider.newsarticles?.length,
-              itemBuilder: (context, index) => Container(
-                  color: Colorconstant.bgcolor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 200,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(newsprovider
-                                      .newsarticles?[index].urlToImage ??
-                                  "NO IMAGE"),
-                            ),
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: TextField(
+                      onChanged: (value) {
+                        getapidata(search: searchControler.text);
+                      },
+                      controller: searchControler,
+                      decoration: InputDecoration(
+                        hintText: "SEARCH ",
+                        labelText: "SEARCH ",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
                           ),
                         ),
-                        Text(
-                          maxLines: 1,
-                          newsprovider.newsarticles?[index].title ?? "",
-                          style: TextStyle(fontSize: 30),
-                        ),
-                        Text(
-                          maxLines: 10,
-                          newsprovider.newsarticles?[index].description ?? "",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
+                      ),
                     ),
-                  )),
+                  ),
+                  ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: newsprovider.newsarticles?.length,
+                    itemBuilder: (context, index) => Container(
+                        child: Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 200,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(newsprovider
+                                        .newsarticles?[index].urlToImage ??
+                                    "NO IMAGE"),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            maxLines: 1,
+                            newsprovider.newsarticles?[index].title ?? "",
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          Text(
+                            maxLines: 10,
+                            newsprovider.newsarticles?[index].description ?? "",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    )),
+                  ),
+                ],
+              ),
             ),
     );
   }
